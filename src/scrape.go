@@ -10,14 +10,14 @@ import (
 )
 
 func main() {
-	links, err := Extract("https://keano.me")
+	links, err := ExtractUrls("https://keano.me")
 	if err != nil {
 		log.Fatal(err)
 	}
 	fmt.Println(links)
 }
 
-func Extract(url string) ([]string, error) {
+func ExtractUrls(url string) ([]string, error) {
 	// Create HTTP client with Timeout
 	client := &http.Client {
 		Timeout: 30 * time.Second,
@@ -56,7 +56,6 @@ func Extract(url string) ([]string, error) {
 	forEachNode(body, visitNode, nil)
 	return links, nil
 }	
-
 
 // Basic traversal of nodes
 // See gopl.io/ch5/outline2
